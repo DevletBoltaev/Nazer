@@ -72,26 +72,7 @@ def _ytdl(bot, message, isZip=False, isLeech=False):
 
     if not is_url(link):
         help_msg = """
-<b>Send link along with command line:</b>
-<code>/cmd</code> link |newname pswd: xx(zip) opt: x:y|x1:y1
-
-<b>By replying to link:</b>
-<code>/cmd</code> |newname pswd: xx(zip) opt: x:y|x1:y1
-
-<b>Options Example:</b> opt: playliststart:^10|matchtitle:S13|writesubtitles:true|live_from_start:true|postprocessor_args:{"ffmpeg": ["-threads", "4"]}|wait_for_video:(5, 100)
-
-<b>Multi links only by replying to first link:</b>
-<code>/cmd</code> 10(number of links)
-Number should be always before |newname, pswd: and opt:
-
-<b>Options Note:</b> Add `^` before integer, some values must be integer and some string.
-Like playlist_items:10 works with string, so no need to add `^` before the number but playlistend works only with integer so you must add `^` before the number like example above.
-You can add tuple and dict also. Use double quotes inside dict.
-
-<b>NOTE:</b>
-You can't add perfix randomly. They should be arranged like exmaple above, rename then pswd then opt. If you don't want to add pswd for example then it will be (|newname opt:), just don't change the arrangement.
-
-Check all arguments from this <a href='https://github.com/yt-dlp/yt-dlp/blob/master/yt_dlp/YoutubeDL.py#L178'>FILE</a>.
+Чтобы воспользоваться данной командой вы должны написать <code/>/mirror</code> или <code/>/m</code> и после вставть ссылку
         """
         return sendMessage(help_msg, bot, message)
 
