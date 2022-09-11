@@ -43,7 +43,7 @@ def _clone(message, bot):
             LOGGER.info('Checking File/Folder if already in Drive...')
             cap, f_name = gd.drive_list(name, True, True)
             if cap:
-                cap = f"File/Folder is already available in Drive. Here are the search results:\n\n{cap}"
+                cap = f"Файл или папка уже существует в каталоге. Воспользуйтесь поиском: \n\n{cap}"
                 sendFile(bot, message, f_name, cap)
                 return
         if multi > 1:
