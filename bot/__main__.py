@@ -26,41 +26,42 @@ def stats(update, context):
     total, used, free, disk = disk_usage('/')
     swap = swap_memory()
     memory = virtual_memory()
-    stats = f'<b>Commit Date:</b> {last_commit}\n\n'\
-            f'<b>Bot Uptime:</b> {get_readable_time(time() - botStartTime)}\n'\
-            f'<b>OS Uptime:</b> {get_readable_time(time() - boot_time())}\n\n'\
-            f'<b>Total Disk Space:</b> {get_readable_file_size(total)}\n'\
-            f'<b>Used:</b> {get_readable_file_size(used)} | <b>Free:</b> {get_readable_file_size(free)}\n\n'\
-            f'<b>Upload:</b> {get_readable_file_size(net_io_counters().bytes_sent)}\n'\
-            f'<b>Download:</b> {get_readable_file_size(net_io_counters().bytes_recv)}\n\n'\
-            f'<b>CPU:</b> {cpu_percent(interval=0.5)}%\n'\
-            f'<b>RAM:</b> {memory.percent}%\n'\
-            f'<b>DISK:</b> {disk}%\n\n'\
-            f'<b>Physical Cores:</b> {cpu_count(logical=False)}\n'\
-            f'<b>Total Cores:</b> {cpu_count(logical=True)}\n\n'\
-            f'<b>SWAP:</b> {get_readable_file_size(swap.total)} | <b>Used:</b> {swap.percent}%\n'\
-            f'<b>Memory Total:</b> {get_readable_file_size(memory.total)}\n'\
-            f'<b>Memory Free:</b> {get_readable_file_size(memory.available)}\n'\
-            f'<b>Memory Used:</b> {get_readable_file_size(memory.used)}\n'
+    stats = f'<b>Дата фиксации:</b> {last_commit}\n\n'\
+            f'<b>Время работы бота:</b> {get_readable_time(time() - botStartTime)}\n'\
+            f'<b>Время работы ОС:</b> {get_readable_time(time() - boot_time())}\n\n'\
+            f'<b>Всего места на диске:</b> {get_readable_file_size(total)}\n'\
+            f'<b>Использовано:</b> {get_readable_file_size(used)} | <b>Free:</b> {get_readable_file_size(free)}\n\n'\
+            f'<b>Выгружено:</b> {get_readable_file_size(net_io_counters().bytes_sent)}\n'\
+            f'<b>Загружено:</b> {get_readable_file_size(net_io_counters().bytes_recv)}\n\n'\
+            f'<b>Процессор:</b> {cpu_percent(interval=0.5)}%\n'\
+            f'<b>Оперативная память:</b> {memory.percent}%\n'\
+            f'<b>Диск:</b> {disk}%\n\n'\
+            f'<b>Физические ядра:</b> {cpu_count(logical=False)}\n'\
+            f'<b>Всего ядер:</b> {cpu_count(logical=True)}\n\n'\
+            f'<b>Менять:</b> {get_readable_file_size(swap.total)} | <b>Used:</b> {swap.percent}%\n'\
+            f'<b>Памяти всего:</b> {get_readable_file_size(memory.total)}\n'\
+            f'<b>Памяти свободно:</b> {get_readable_file_size(memory.available)}\n'\
+            f'<b>Памяти использовано:</b> {get_readable_file_size(memory.used)}\n'
     sendMessage(stats, context.bot, update.message)
 
 
 def start(update, context):
     buttons = ButtonMaker()
-    buttons.buildbutton("Репозиторий", "https://www.github.com/anasty17/mirror-leech-telegram-bot")
-    buttons.buildbutton("Оунер", "https://www.github.com/anasty17")
+    buttons.buildbutton("Мой Телеграм", "t.me/Nazer_Ginx")
+    buttons.buildbutton("Мой ВК", "vk.com/devlet_b")
     reply_markup = buttons.build_menu(2)
     if CustomFilters.authorized_user(update) or CustomFilters.authorized_chat(update):
         start_string = f'''
-This bot can mirror all your links to Google Drive or to telegram (новое)
-Type /{BotCommands.HelpCommand} to get a list of available commands
+⚡️ Это бот, который умеет напрямую скачивать файлы (Игры, программы, фильмы, музыку, фото) на Ваш Google Диск ⚡️
+----------------------------------
+Напишите /{BotCommands.HelpCommand} чтобы получить весь список доступных команд
 '''
         sendMarkup(start_string, context.bot, update.message, reply_markup)
     else:
-        sendMarkup('Not an Authorized user, deploy your own mirror-leech bot', context.bot, update.message, reply_markup)
+        sendMarkup('Не авторизованный пользователь. Напишите администратору для покупки бота', context.bot, update.message, reply_markup)
 
 def restart(update, context):
-    restart_message = sendMessage("Restarting...", context.bot, update.message)
+    restart_message = sendMessage("Перезагрузка...", context.bot, update.message)
     if Interval:
         Interval[0].cancel()
         Interval.clear()
@@ -146,9 +147,9 @@ def main():
                 if ospath.isfile(".restartmsg"):
                     with open(".restartmsg") as f:
                         chat_id, msg_id = map(int, f)
-                    msg = 'Restarted Successfully!'
+                    msg = 'Перезагрузка прошла успешно!'
                 else:
-                    msg = 'Bot Restarted!'
+                    msg = 'Бот перезагрузился'
                 for tag, links in data.items():
                      msg += f"\n\n{tag}: "
                      for index, link in enumerate(links, start=1):
@@ -163,7 +164,7 @@ def main():
                                  except Exception as e:
                                      LOGGER.error(e)
                              msg = ''
-                if 'Restarted Successfully!' in msg and cid == chat_id:
+                if 'Перезагрузка прошла успешно!' in msg and cid == chat_id:
                      bot.editMessageText(msg, chat_id, msg_id, parse_mode='HTML', disable_web_page_preview=True)
                      osremove(".restartmsg")
                 else:
@@ -175,12 +176,12 @@ def main():
     if ospath.isfile(".restartmsg"):
         with open(".restartmsg") as f:
             chat_id, msg_id = map(int, f)
-        bot.edit_message_text("Restarted Successfully!", chat_id, msg_id)
+        bot.edit_message_text("Перезагрузка прошла успешно!", chat_id, msg_id)
         osremove(".restartmsg")
     elif not notifier_dict and AUTHORIZED_CHATS:
         for id_ in AUTHORIZED_CHATS:
             try:
-                bot.sendMessage(id_, "Bot Restarted!", 'HTML')
+                bot.sendMessage(id_, "Бот перезагрузился", 'HTML')
             except Exception as e:
                 LOGGER.error(e)
 
