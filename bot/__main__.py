@@ -47,8 +47,8 @@ def stats(update, context):
 
 def start(update, context):
     buttons = ButtonMaker()
-    buttons.buildbutton("Мой Телеграм", "t.me/Nazer_Ginx")
-    buttons.buildbutton("Мой ВК", "vk.com/devlet_b")
+    buttons.buildbutton("Мой Телеграм", "t.me")
+    buttons.buildbutton("Мой ВК", "vk.com")
     reply_markup = buttons.build_menu(2)
     if CustomFilters.authorized_user(update) or CustomFilters.authorized_chat(update):
         start_string = f'''
