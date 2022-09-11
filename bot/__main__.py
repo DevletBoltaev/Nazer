@@ -30,7 +30,7 @@ def stats(update, context):
             f'<b>Время работы бота:</b> {get_readable_time(time() - botStartTime)}\n'\
             f'<b>Время работы ОС:</b> {get_readable_time(time() - boot_time())}\n\n'\
             f'<b>Всего места на диске:</b> {get_readable_file_size(total)}\n'\
-            f'<b>Использовано:</b> {get_readable_file_size(used)} | <b>Free:</b> {get_readable_file_size(free)}\n\n'\
+            f'<b>Использовано:</b> {get_readable_file_size(used)} | <b>Свободно:</b> {get_readable_file_size(free)}\n\n'\
             f'<b>Выгружено:</b> {get_readable_file_size(net_io_counters().bytes_sent)}\n'\
             f'<b>Загружено:</b> {get_readable_file_size(net_io_counters().bytes_recv)}\n\n'\
             f'<b>Процессор:</b> {cpu_percent(interval=0.5)}%\n'\
