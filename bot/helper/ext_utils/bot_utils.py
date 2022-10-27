@@ -20,18 +20,18 @@ PAGE_NO = 1
 
 
 class MirrorStatus:
-    STATUS_UPLOADING = "Upload"
-    STATUS_DOWNLOADING = "Download"
-    STATUS_CLONING = "Clone"
-    STATUS_WAITING = "Queue"
-    STATUS_PAUSED = "Pause"
-    STATUS_ARCHIVING = "Archive"
-    STATUS_EXTRACTING = "Extract"
-    STATUS_SPLITTING = "Split"
-    STATUS_CHECKING = "CheckUp"
-    STATUS_SEEDING = "Seed"
+    STATUS_UPLOADING = "Выгрузка"
+    STATUS_DOWNLOADING = "Загрузка"
+    STATUS_CLONING = "Клонирование"
+    STATUS_WAITING = "Очередь"
+    STATUS_PAUSED = "Пауза"
+    STATUS_ARCHIVING = "Архивация"
+    STATUS_EXTRACTING = "Распаковка"
+    STATUS_SPLITTING = "Разделение"
+    STATUS_CHECKING = "Проверка"
+    STATUS_SEEDING = "Сид"
 
-SIZE_UNITS = ['B', 'KB', 'MB', 'GB', 'TB', 'PB']
+SIZE_UNITS = ['Б', 'КБ', 'МБ', 'ГБ', 'ТБ', 'ПБ']
 
 
 class setInterval:
@@ -106,7 +106,7 @@ def get_progress_bar_string(status):
     p = 0 if total == 0 else round(completed * 100 / total)
     p = min(max(p, 0), 100)
     cFull = p // 8
-    p_str = '■' * cFull
+    p_str = '⬛' * cFull
     p_str += '□' * (12 - cFull)
     p_str = f"[{p_str}]"
     return p_str
