@@ -175,7 +175,7 @@ def _getResult(search_results, key, message, method):
             if 'torrents' in result.keys():
                 for subres in result['torrents']:
                     msg += f"<span class='topmarginsm'><b>Quality: </b>{subres['quality']} | "
-                    msg += f"<b>Type: </b>{subres['type']} | <b>Size: </b>{subres['size']}</span>"
+                    msg += f"<b>Тип: </b>{subres['type']} | <b>Размер: </b>{subres['size']}</span>"
                     if 'torrent' in subres.keys():
                         msg += "<span class='topmarginxl'><a class='withhover' "
                         msg += f"href='{subres['torrent']}'>Direct Link</a></span>"
@@ -184,10 +184,10 @@ def _getResult(search_results, key, message, method):
                         msg += f"href='http://t.me/share/url?url={subres['magnet']}'>Telegram</a></span>"
                 msg += '<br>'
             else:
-                msg += f"<span class='topmarginsm'><b>Size: </b>{result['size']}</span>"
+                msg += f"<span class='topmarginsm'><b>Размер: </b>{result['size']}</span>"
                 try:
                     msg += f"<span class='topmarginsm'><b>Seeders: </b>{result['seeders']} | "
-                    msg += f"<b>Leechers: </b>{result['leechers']}</span>"
+                    msg += f"<b>Личи: </b>{result['leechers']}</span>"
                 except:
                     pass
                 if 'torrent' in result.keys():
