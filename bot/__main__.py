@@ -25,22 +25,22 @@ def stats(update, context):
     total, used, free, disk = disk_usage('/')
     swap = swap_memory()
     memory = virtual_memory()
-    stats = f'<b>Commit Date:</b> {last_commit}\n\n'\
-            f'<b>Bot Uptime:</b> {get_readable_time(time() - botStartTime)}\n'\
-            f'<b>OS Uptime:</b> {get_readable_time(time() - boot_time())}\n\n'\
+    stats = f'<b>Дата фиксации:</b> {last_commit}\n\n'\
+            f'<b>Время работы бота:</b> {get_readable_time(time() - botStartTime)}\n'\
+            f'<b>Время работы ОС:</b> {get_readable_time(time() - boot_time())}\n\n'\
             f'<b>Total Disk Space:</b> {get_readable_file_size(total)}\n'\
             f'<b>Used:</b> {get_readable_file_size(used)} | <b>Free:</b> {get_readable_file_size(free)}\n\n'\
             f'<b>Выгрузка:</b> {get_readable_file_size(net_io_counters().bytes_sent)}\n'\
-            f'<b>Download:</b> {get_readable_file_size(net_io_counters().bytes_recv)}\n\n'\
-            f'<b>CPU:</b> {cpu_percent(interval=0.5)}%\n'\
+            f'<b>Загрузка:</b> {get_readable_file_size(net_io_counters().bytes_recv)}\n\n'\
+            f'<b>Процессор:</b> {cpu_percent(interval=0.5)}%\n'\
             f'<b>RAM:</b> {memory.percent}%\n'\
-            f'<b>DISK:</b> {disk}%\n\n'\
-            f'<b>Physical Cores:</b> {cpu_count(logical=False)}\n'\
-            f'<b>Total Cores:</b> {cpu_count(logical=True)}\n\n'\
+            f'<b>Диск:</b> {disk}%\n\n'\
+            f'<b>Физические ядра:</b> {cpu_count(logical=False)}\n'\
+            f'<b>Всего ядер:</b> {cpu_count(logical=True)}\n\n'\
             f'<b>SWAP:</b> {get_readable_file_size(swap.total)} | <b>Used:</b> {swap.percent}%\n'\
-            f'<b>Memory Total:</b> {get_readable_file_size(memory.total)}\n'\
-            f'<b>Memory Free:</b> {get_readable_file_size(memory.available)}\n'\
-            f'<b>Memory Used:</b> {get_readable_file_size(memory.used)}\n'
+            f'<b>Всего памяти:</b> {get_readable_file_size(memory.total)}\n'\
+            f'<b>Памяти свободно:</b> {get_readable_file_size(memory.available)}\n'\
+            f'<b>Памяти использовано:</b> {get_readable_file_size(memory.used)}\n'
     sendMessage(stats, context.bot, update.message)
 
 
@@ -84,16 +84,16 @@ def log(update, context):
 
 help_string = f'''
 NOTE: Try each command without any perfix to see more detalis.
-/{BotCommands.MirrorCommand[0]} or /{BotCommands.MirrorCommand[1]}: Start mirroring to Google Drive.
-/{BotCommands.ZipMirrorCommand[0]} or /{BotCommands.ZipMirrorCommand[1]}: Start mirroring and upload the file/folder compressed with zip extension.
-/{BotCommands.UnzipMirrorCommand[0]} or /{BotCommands.UnzipMirrorCommand[1]}: Start mirroring and upload the file/folder extracted from any archive extension.
-/{BotCommands.QbMirrorCommand[0]} or /{BotCommands.QbMirrorCommand[1]}: Start Mirroring to Google Drive using qBittorrent.
-/{BotCommands.QbZipMirrorCommand[0]} or /{BotCommands.QbZipMirrorCommand[1]}: Start mirroring using qBittorrent and upload the file/folder compressed with zip extension.
-/{BotCommands.QbUnzipMirrorCommand[0]} or /{BotCommands.QbUnzipMirrorCommand[1]}: Start mirroring using qBittorrent and upload the file/folder extracted from any archive extension.
-/{BotCommands.YtdlCommand[0]} or /{BotCommands.YtdlCommand[1]}: Mirror yt-dlp supported link.
-/{BotCommands.YtdlZipCommand[0]} or /{BotCommands.YtdlZipCommand[1]}: Mirror yt-dlp supported link as zip.
-/{BotCommands.LeechCommand[0]} or /{BotCommands.LeechCommand[1]}: Start leeching to Telegram.
-/{BotCommands.ZipLeechCommand[0]} or /{BotCommands.ZipLeechCommand[1]}: Start leeching and upload the file/folder compressed with zip extension.
+/{BotCommands.MirrorCommand[0]} or /{BotCommands.MirrorCommand[1]}: Начать зеркалирование на Google Диск.
+/{BotCommands.ZipMirrorCommand[0]} or /{BotCommands.ZipMirrorCommand[1]}: Запустите зеркалирование и загрузите файл/папку, сжатую с расширением zip.
+/{BotCommands.UnzipMirrorCommand[0]} or /{BotCommands.UnzipMirrorCommand[1]}: Запустите зеркалирование и загрузите файл/папку, извлеченную из любого расширения архива.
+/{BotCommands.QbMirrorCommand[0]} or /{BotCommands.QbMirrorCommand[1]}: Начать зеркалирование на Google Диск с помощью qBittorrent.
+/{BotCommands.QbZipMirrorCommand[0]} or /{BotCommands.QbZipMirrorCommand[1]}: Запустите зеркалирование с помощью qBittorrent и загрузите файл/папку, сжатую с расширением zip.
+/{BotCommands.QbUnzipMirrorCommand[0]} or /{BotCommands.QbUnzipMirrorCommand[1]}: Запустите зеркалирование с помощью qBittorrent и загрузите файл/папку, извлеченную из архива любого расширения.
+/{BotCommands.YtdlCommand[0]} or /{BotCommands.YtdlCommand[1]}: Скачивание видео с YouTube
+/{BotCommands.YtdlZipCommand[0]} or /{BotCommands.YtdlZipCommand[1]}: Скачать видео с YouTube и запаковать в архив с рашсширением .zip.
+/{BotCommands.LeechCommand[0]} or /{BotCommands.LeechCommand[1]}: Начать личинг Телеграма
+/{BotCommands.ZipLeechCommand[0]} or /{BotCommands.ZipLeechCommand[1]}: Начать скачивание и загрузить файл/папку, сжатую с расширением zip.
 /{BotCommands.UnzipLeechCommand[0]} or /{BotCommands.UnzipLeechCommand[1]}: Start leeching and upload the file/folder extracted from any archive extension.
 /{BotCommands.QbLeechCommand[0]} or /{BotCommands.QbLeechCommand[1]}: Start leeching using qBittorrent.
 /{BotCommands.QbZipLeechCommand[0]} or /{BotCommands.QbZipLeechCommand[1]}: Start leeching using qBittorrent and upload the file/folder compressed with zip extension.
